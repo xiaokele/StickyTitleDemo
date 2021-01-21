@@ -5,6 +5,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:screenOrientation">portrait</item>
     </style>
 
+
+    <declare-styleable name="IndexView">
+        <attr name="index_text_size" format="dimension|reference" />
+        <attr name="index_bg_color" format="color|reference" />
+        <attr name="index_text_color" format="color|reference" />
+    </declare-styleable>
 </resources>

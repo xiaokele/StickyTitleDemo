@@ -18,6 +18,7 @@
         </activity>
 
         <activity android:name=".sticky_title.StickyTitleActivity" />
+        <activity android:name=".index_view.IndexViewActivity" />
     </application>
 
 </manifest>

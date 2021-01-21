@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,7 +26,7 @@ public class StickyTitleListItemStickyDecoration extends RecyclerView.ItemDecora
      * true 靠左边
      * false 不靠左
      */
-    private boolean isAlignLeft = true;
+    //private boolean isAlignLeft = true;
 
     //private final Paint bgPaint;
     //private final Paint textPaint;
@@ -36,7 +35,7 @@ public class StickyTitleListItemStickyDecoration extends RecyclerView.ItemDecora
      */
     private StickyTitleGroupListener mGroupListener;
 
-    public StickyTitleListItemStickyDecoration(StickyTitleGroupListener groupListener) {
+    private StickyTitleListItemStickyDecoration(StickyTitleGroupListener groupListener) {
         this.mGroupListener = groupListener;
 
         //bgPaint = new Paint();
@@ -103,6 +102,7 @@ public class StickyTitleListItemStickyDecoration extends RecyclerView.ItemDecora
 
     /**
      * 获取组View
+     *
      * @param position
      * @return 组名
      */
@@ -161,13 +161,67 @@ public class StickyTitleListItemStickyDecoration extends RecyclerView.ItemDecora
             groupView.layout(0, 0, right, mGroupHeight);
             groupView.buildDrawingCache();
             Bitmap bitmap = groupView.getDrawingCache();
-            int marginLeft = isAlignLeft ? 0 : right - groupView.getMeasuredWidth();
-            c.drawBitmap(bitmap, left + marginLeft, top - mGroupHeight, null);
+            //int marginLeft = isAlignLeft ? 0 : right - groupView.getMeasuredWidth();
+            //c.drawBitmap(bitmap, left + marginLeft, top - mGroupHeight, null);
+            c.drawBitmap(bitmap, left, top - mGroupHeight, null);
 
             //c.drawRect(left, top - mGroupHeight, right, top, bgPaint);
             //Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             //float baseLine = top - (mGroupHeight - (fontMetrics.bottom - fontMetrics.top)) / 2 - fontMetrics.bottom;
             //c.drawText(getGroupName(position).toUpperCase(), left, baseLine, textPaint);
+        }
+    }
+
+    /**
+     * 构建者
+     */
+    public static class Builder {
+
+        private StickyTitleListItemStickyDecoration mDecoration;
+
+        private Builder(StickyTitleGroupListener listener) {
+            mDecoration = new StickyTitleListItemStickyDecoration(listener);
+        }
+
+        /**
+         * 初始化
+         *
+         * @param listener
+         * @return
+         */
+        public static Builder init(StickyTitleGroupListener listener) {
+            return new Builder(listener);
+        }
+
+        /**
+         * 设置悬浮标题的高度
+         *
+         * @param height
+         * @return
+         */
+        public Builder setTitleHeight(int height) {
+            mDecoration.mGroupHeight = height;
+            return this;
+        }
+
+//        /**
+//         * 设置是否靠左显示
+//         *
+//         * @param alignLeft
+//         * @return
+//         */
+//        public Builder setAlignLeft(boolean alignLeft) {
+//            mDecoration.isAlignLeft = alignLeft;
+//            return this;
+//        }
+
+        /**
+         * 构建
+         *
+         * @return
+         */
+        public StickyTitleListItemStickyDecoration build() {
+            return mDecoration;
         }
     }
 }

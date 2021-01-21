@@ -43,23 +43,28 @@ public class StickyTitleActivity extends AppCompatActivity {
         mRV.setLayoutManager(mManager);
         final List<StickyTitleItemBean> mList = new ArrayList<>();
         mRV.addItemDecoration(new StickyTitleListItemMarginDecoration(mList));
-        mRV.addItemDecoration(new StickyTitleListItemStickyDecoration(new StickyTitleListItemStickyDecoration.StickyTitleGroupListener() {
-            @Override
-            public String getGroupName(int position) {
-                return mList.get(position).title;
-            }
+        StickyTitleListItemStickyDecoration stickyDecoration = StickyTitleListItemStickyDecoration.Builder
+                .init(new StickyTitleListItemStickyDecoration.StickyTitleGroupListener() {
+                    @Override
+                    public String getGroupName(int position) {
+                        return mList.get(position).title;
+                    }
 
-            @Override
-            public View getGroupView(int position) {
-                if (position < mList.size()) {
-                    View view = getLayoutInflater().inflate(R.layout.title_sticky_title, null, false);
-                    TextView tvTitle = view.findViewById(R.id.tv_title);
-                    tvTitle.setText(mList.get(position).title);
-                    return view;
-                }
-                return null;
-            }
-        }));
+                    @Override
+                    public View getGroupView(int position) {
+                        if (position < mList.size()) {
+                            View view = getLayoutInflater().inflate(R.layout.title_sticky_title, null, false);
+                            TextView tvTitle = view.findViewById(R.id.tv_title);
+                            tvTitle.setText(mList.get(position).title);
+                            return view;
+                        }
+                        return null;
+                    }
+                })
+                .setTitleHeight(60)
+                //.setAlignLeft(true)
+                .build();
+        mRV.addItemDecoration(stickyDecoration);
         StickyTitleAdapter mAdapter = new StickyTitleAdapter(R.layout.item_sticky_title, mList);
         mRV.setAdapter(mAdapter);
 
@@ -79,7 +84,7 @@ public class StickyTitleActivity extends AppCompatActivity {
                 b.title = "title_2";
             } else if (i < 30) {
                 b.title = "title_3";
-            }else{
+            } else {
                 b.title = "title_other";
             }
             b.content = "content-" + i;
