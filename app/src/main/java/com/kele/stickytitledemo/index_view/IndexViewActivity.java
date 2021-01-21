@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * Des:
+ * Des: 指示索引Activity
  * Created by kele on 2021/1/21.
  * E-mail:984127585@qq.com
  */

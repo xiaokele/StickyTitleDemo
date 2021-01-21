@@ -47,8 +47,8 @@ public class StickyTitleAdapter extends RecyclerView.Adapter<StickyTitleAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != mOnItemClickListenr) {
-                    mOnItemClickListenr.onItemClick(position);
+                if (null != mOnItemClickListener) {
+                    mOnItemClickListener.onItemClick(position);
                 }
             }
         });
@@ -68,14 +68,22 @@ public class StickyTitleAdapter extends RecyclerView.Adapter<StickyTitleAdapter.
         }
     }
 
-    private OnItemClickListener mOnItemClickListenr;
+    private OnItemClickListener mOnItemClickListener;
 
+    /**
+     * 点击回调接口
+     */
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
+    /**
+     * 设置Item点击回调
+     *
+     * @param listener
+     */
     public void setOnItemClickListener(OnItemClickListener listener) {
-        mOnItemClickListenr = listener;
+        mOnItemClickListener = listener;
     }
 
 }

@@ -8,10 +8,11 @@
         <item name="android:screenOrientation">portrait</item>
     </style>
 
-
+    <!--    IndexView参数-->
     <declare-styleable name="IndexView">
         <attr name="index_text_size" format="dimension|reference" />
-        <attr name="index_bg_color" format="color|reference" />
         <attr name="index_text_color" format="color|reference" />
+        <attr name="index_bg_color" format="color|reference" />
+        <attr name="index_touch_bg_color" format="color|reference" />
     </declare-styleable>
 </resources>

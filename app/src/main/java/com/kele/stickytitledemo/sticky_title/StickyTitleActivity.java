@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Des:
+ * Des: 粘性标题Activity
  * Created by kele on 2021/1/20.
  * E-mail:984127585@qq.com
  */
@@ -42,6 +42,7 @@ public class StickyTitleActivity extends AppCompatActivity {
         LinearLayoutManager mManager = new LinearLayoutManager(this);
         mRV.setLayoutManager(mManager);
         final List<StickyTitleItemBean> mList = new ArrayList<>();
+        //RecyclerView可以添加多个Decoration
         mRV.addItemDecoration(new StickyTitleListItemMarginDecoration(mList));
         StickyTitleListItemStickyDecoration stickyDecoration = StickyTitleListItemStickyDecoration.Builder
                 .init(new StickyTitleListItemStickyDecoration.StickyTitleGroupListener() {
@@ -75,9 +76,9 @@ public class StickyTitleActivity extends AppCompatActivity {
             }
         });
 
+        //造数据
         for (int i = 0; i < 50; i++) {
             StickyTitleItemBean b = new StickyTitleItemBean();
-            b.isTitle = i % 5 == 0;
             if (i < 10) {
                 b.title = "title_1";
             } else if (i < 20) {
